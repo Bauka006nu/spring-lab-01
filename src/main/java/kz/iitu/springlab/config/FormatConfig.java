@@ -1,0 +1,17 @@
+package kz.iitu.springlab.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.time.format.DateTimeFormatter;
+
+@Configuration
+public class FormatConfig {
+
+    @Bean
+    public DateTimeFormatter dateTimeFormatter(
+            @Value("${app.date-pattern}") String pattern) {
+        return DateTimeFormatter.ofPattern(pattern);
+    }
+}
