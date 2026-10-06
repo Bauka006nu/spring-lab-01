@@ -5,6 +5,11 @@ app:
   mail:
     enabled: false
     retry-count: 1
+  locale:
+    default-locale: kk
+    supported:
+      - kk
+      - ru
 
 logging:
   level:

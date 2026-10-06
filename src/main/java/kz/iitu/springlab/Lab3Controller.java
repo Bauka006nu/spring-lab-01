@@ -35,6 +35,10 @@ public class Lab3Controller {
         result.put("retryCount", appProperties.mail().retryCount());
         result.put("timeout", appProperties.mail().timeout());
         result.put("enabled", appProperties.mail().enabled());
+
+        result.put("defaultLocale", appProperties.locale().defaultLocale());
+        result.put("supportedLocales", appProperties.locale().supported());
+
         result.put("serverPort", environment.getProperty("server.port"));
         result.put("activeProfiles", environment.getActiveProfiles());
         result.put("banner", banner.text());
