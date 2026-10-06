@@ -1,6 +1,7 @@
 package kz.iitu.springlab.service;
 
 import kz.iitu.springlab.audit.Audited;
+import kz.iitu.springlab.cache.SimpleCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,10 @@ public class CatalogService {
         return "Item no. " + id;
     }
 
+    @SimpleCache
     @Audited(action = "CATALOG_LIST", logArguments = true)
     public List<String> findAll(int limit) {
+        System.out.println("[SERVICE] findAll executed");
         sleep(300);
         return IntStream.rangeClosed(1, limit)
                 .mapToObj(i -> "Item no. " + i)
@@ -38,8 +41,8 @@ public class CatalogService {
     }
 
     public String removeTwice(long id) {
-        String first = self.remove(id);       // через прокси
-        String second = self.remove(id + 1);  // через прокси
+        String first = self.remove(id);
+        String second = self.remove(id + 1);
         return first + "; " + second;
     }
 
