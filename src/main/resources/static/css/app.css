@@ -1,0 +1,6 @@
+body { font-family: Arial, sans-serif; background: #f4f6fa; margin: 2rem; color: #222; }
+h1 { color: #1f3a68; }
+table { border-collapse: collapse; background: #fff; }
+th, td { border: 1px solid #b8c2d6; padding: 8px 14px; text-align: left; }
+th { background: #1f3a68; color: #fff; }
+.flash { background: #dff3e1; border: 1px solid #7bc47f; padding: 8px 12px; display: inline-block; }
