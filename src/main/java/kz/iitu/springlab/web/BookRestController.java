@@ -1,5 +1,6 @@
 package kz.iitu.springlab.web;
 
+import jakarta.validation.Valid;
 import kz.iitu.springlab.catalog.Book;
 import kz.iitu.springlab.catalog.BookService;
 import kz.iitu.springlab.catalog.BookStats;
@@ -38,7 +39,7 @@ public class BookRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> create(@RequestBody Book book) {
+    public ResponseEntity<Book> create(@Valid @RequestBody Book book) {
         Book saved = service.create(book);
         return ResponseEntity
                 .created(URI.create("/api/books/" + saved.id()))
