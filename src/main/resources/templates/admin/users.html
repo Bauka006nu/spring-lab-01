@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 6px 12px; }
+        th { background: #1f3864; color: #fff; }
+    </style>
+</head>
+<body>
+<h1>Administration</h1>
+<p>Logged in as <b th:text="${currentUser}">user</b> (<span th:text="${currentRoles}">ROLE_USER</span>)</p>
+<table>
+    <tr><th>#</th><th>Username</th><th>Roles</th><th>Enabled</th></tr>
+    <tr th:each="u : ${users}">
+        <td th:text="${u.id}">1</td>
+        <td th:text="${u.username}">user</td>
+        <td th:text="${u.roles}">[USER]</td>
+        <td th:text="${u.enabled}">true</td>
+    </tr>
+</table>
+<p><a th:href="@{/books}">Back to books</a></p>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Log out</button>
+</form>
+</body>
+</html>

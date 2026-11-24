@@ -1,5 +1,6 @@
 package kz.iitu.springlab.catalog;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -15,9 +16,14 @@ public class BookService {
     }
     public Optional<Book> findById(long id) { return repository.findById(id); }
     public Book create(Book b) { return repository.save(new Book(null, b.title(), b.author(), b.year())); }
+
+    // Variant 5: only the owner or an administrator may edit a book
+    @PreAuthorize("hasRole('ADMIN') or @bookOwnership.isOwner(#id, authentication.name)")
     public Optional<Book> update(long id, Book b) {
         return repository.findById(id).map(e -> repository.save(new Book(id, b.title(), b.author(), b.year())));
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean delete(long id) { return repository.deleteById(id); }
 
     public BookStats stats() {
